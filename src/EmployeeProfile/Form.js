@@ -223,7 +223,6 @@ export class Form extends Component {
 
                 <div className="showData">
                     <table>
-
                         {allEmp.map(detail => (
                             <tbody>
                                 <tr><td>
