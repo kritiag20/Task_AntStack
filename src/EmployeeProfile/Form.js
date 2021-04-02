@@ -166,9 +166,9 @@ export class Form extends Component {
 
                         <div>
                             <label className="label">Contact Details: </label>
-                            <div className="input2">
+                            <div className="">
                                 {this.state.PhoneNumber.map((number, index) => (
-                                    <div key={index}>
+                                    <div className="input2" key={index}>
                                         <input type="text" className="inputbox" name="type" value={number.type} onChange={this.handleChange, (e) => this.handlePhone(e, index)} />
 
                                         <input type="Number" className="Numinputbox" name="phone" value={number.phone} onChange={this.handleChange, (e) => this.handlePhone(e, index)} />
@@ -176,11 +176,11 @@ export class Form extends Component {
 
 
 
-                                        {this.state.PhoneNumber.length !== 1 && <button onClick={() => this.removeNumber(index)}>Remove</button>}
+                                        {this.state.PhoneNumber.length !== 1 && <button className="removeBtn" onClick={() => this.removeNumber(index)}>Remove</button>}
 
                                     </div>
                                 ))}
-                                <button className="addNewRow" onClick={(e) => this.addSkills(e)}>
+                                <button className="addNewRow" onClick={(e) => this.addNumber(e)}>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#00188D">
                                         <path strokeLinecap="round" strokeLinejoin="round" stroke="#c22d2d" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                                     </svg>
@@ -198,7 +198,7 @@ export class Form extends Component {
 
                                         <input type="text" className="inputbox" name="skill" value={skil.skill} onChange={this.handleChange, (e) => this.handlerow(e, index)} />
                                         {this.state.skill_row.length !== 1 &&
-                                            <button onClick={() => this.removeSkill(index)}>Remove</button>}
+                                            <button className="removeBtn" onClick={() => this.removeSkill(index)}>Remove</button>}
                                     </div>
                                 )
                                 )}

@@ -109,7 +109,7 @@ svg{
   margin-top: 7px;
   margin-left: 10px;
   border-radius: 50%;
-
+  outline: none;
 }
 .label{
   color: #00188D;
@@ -126,6 +126,7 @@ svg{
   margin: auto;
   width: 400px;
   height: auto;
+  outline: none;
 }
 
 .dataStyle{
@@ -140,6 +141,7 @@ svg{
     font-weight: 600;
     color: white;
     margin-right: 30px;
+    outline: none;
     background: -webkit-linear-gradient(80deg,#0017F1 10%, #001857 60%);
 }
 img{
@@ -147,4 +149,13 @@ img{
   height: 230px;
   /* margin: auto; */
   border-radius: 50%;
+}
+.removeBtn{
+  height: 40px;
+    width: 140px;
+    border-radius: 13px;
+    font-size: 17px;
+    font-weight: 600;
+    outline: none;
+    color: #c22d2d;
 }
