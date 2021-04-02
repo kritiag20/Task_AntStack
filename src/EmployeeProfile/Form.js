@@ -8,18 +8,17 @@ const initialState = {
     desgErr: "",
     PhoneNumber: [{ type: "", phone: "" },],
     skill_row: [{ skill: "" }],
-    dob: "",
+    dob: ""
 }
 
-
-
 export class Form extends Component {
-
 
     constructor(props) {
         super(props)
 
         this.state = initialState;
+
+        this.getData = this.getData.bind(this);
 
     }
 
@@ -67,12 +66,10 @@ export class Form extends Component {
     handlerow(e, index) {
         this.state.skill_row[index] = e.target.value
         this.setState({ skill_row: this.state.skill_row })
-        console.log(index);
     }
 
     removeSkill(index) {
         this.state.skill_row.splice(index, 1);
-        console.log(this.state.skill_row, 'kkkk');
         this.setState({ skill_row: this.state.skill_row });
     }
 
@@ -89,7 +86,6 @@ export class Form extends Component {
     removeNumber(index) {
         this.state.PhoneNumber.splice(index, 1);
         this.setState({ PhoneNumber: this.state.PhoneNumber });
-        console.log("Phone No Deleted ", this.state.PhoneNumber);
     }
 
     Submit = event => {
@@ -103,12 +99,10 @@ export class Form extends Component {
             if (localStorage.getItem('mydata')) {
                 TotalData = JSON.parse(localStorage.getItem('mydata'))
 
-                console.log(typeof TotalData)
             }
             TotalData.push(obj)
             localStorage.setItem('mydata', JSON.stringify(TotalData))
 
-            // console.log("obj", obj)
             alert("Employees Details Saved Successfully")
             //clear form
             this.setState(initialState);
@@ -120,12 +114,9 @@ export class Form extends Component {
     getData() {
         let data = localStorage.getItem('mydata');
         data = JSON.parse(data);
-        console.log(data)
 
         return data
     }
-
-
 
     render() {
         const allEmp = this.getData()
@@ -148,7 +139,7 @@ export class Form extends Component {
                             <div>
                                 <label className="label">Name:</label>
                                 <div>
-                                    <input type="text" className="inputbox" name="name" value={this.state.name} onChange={this.handleChange} />
+                                    <input type="text" className="inputbox" name="name" placeholder="Name" value={this.state.name} onChange={this.handleChange} />
                                 </div>
                                 <p style={{ color: "red" }}>{this.state.nameErr}</p>
                             </div>
@@ -157,7 +148,7 @@ export class Form extends Component {
                             <div>
                                 <label className="label">Designation: </label>
                                 <div>
-                                    <input type="text" name="designation" className="inputbox" value={this.state.designation} onChange={this.handleChange} />
+                                    <input type="text" name="designation" className="inputbox" placeholder="Designation" value={this.state.designation} onChange={this.handleChange} />
 
                                 </div>
                                 <p style={{ color: "red" }}>{this.state.desgErr}</p>
@@ -169,9 +160,9 @@ export class Form extends Component {
                             <div className="">
                                 {this.state.PhoneNumber.map((number, index) => (
                                     <div className="input2" key={index}>
-                                        <input type="text" className="inputbox" name="type" value={number.type} onChange={this.handleChange, (e) => this.handlePhone(e, index)} />
+                                        <input type="text" className="inputbox" name="type" placeholder="Type" value={number.type} onChange={this.handleChange, (e) => this.handlePhone(e, index)} />
 
-                                        <input type="Number" className="Numinputbox" name="phone" value={number.phone} onChange={this.handleChange, (e) => this.handlePhone(e, index)} />
+                                        <input type="Number" className="Numinputbox" name="phone" placeholder="Phone Number" value={number.phone} onChange={this.handleChange, (e) => this.handlePhone(e, index)} />
                                         {/* {this.state.PhoneNumber.length !== 1 && <button onClick={() => this.removeNumber(index)}>Remove</button>} */}
 
 
@@ -196,7 +187,7 @@ export class Form extends Component {
                                 (
                                     <div key={index}>
 
-                                        <input type="text" className="inputbox" name="skill" value={skil.skill} onChange={this.handleChange, (e) => this.handlerow(e, index)} />
+                                        <input type="text" className="inputbox" name="skill" placeholder="Enter your Skills" value={skil.skill} onChange={this.handleChange, (e) => this.handlerow(e, index)} />
                                         {this.state.skill_row.length !== 1 &&
                                             <button className="removeBtn" onClick={() => this.removeSkill(index)}>Remove</button>}
                                     </div>
@@ -215,7 +206,7 @@ export class Form extends Component {
                         <div>
                             <label className="label">Date Of Birth: </label>
                             <div>
-                                <input type="date" className="inputbox" name="dob" value={this.state.dob} onChange={this.handleChange} />
+                                <input type="date" className="inputbox" placeholder="Date of Birth" name="dob" value={this.state.dob} onChange={this.handleChange} />
 
                             </div>
                         </div>
@@ -223,7 +214,7 @@ export class Form extends Component {
 
                         <div class="Btns">
                             <button className="addEmpBtn" onClick={(e) => this.Submit(e)}>Add Employee</button>
-                            <button class="addEmpBtn" type="submit" onClick={() => this.getData()}>Show Data</button>
+                            <button class="addEmpBtn" type="submit" onClick={this.getData}>Show Data</button>
 
                         </div>
                     </div>
